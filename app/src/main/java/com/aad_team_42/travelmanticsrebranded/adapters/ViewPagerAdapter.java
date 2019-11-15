@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.aad_team_42.travelmanticsrebranded.views.fragments.EventFragment;
 import com.aad_team_42.travelmanticsrebranded.views.fragments.ExploreFragment;
+import com.aad_team_42.travelmanticsrebranded.views.fragments.FavoriteFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
@@ -24,7 +25,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 
             case 1:
-                return new ExploreFragment();
+                return new FavoriteFragment();
 
             case 2:
                 return new EventFragment();

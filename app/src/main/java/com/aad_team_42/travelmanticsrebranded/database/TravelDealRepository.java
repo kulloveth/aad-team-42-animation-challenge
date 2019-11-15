@@ -1,69 +1,47 @@
 package com.aad_team_42.travelmanticsrebranded.database;
 
-import android.content.Context;
+import android.app.Application;
+import android.os.AsyncTask;
 
-import androidx.room.Room;
+import androidx.lifecycle.LiveData;
+
+import com.aad_team_42.travelmanticsrebranded.model.Explore;
 
 import java.util.List;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subscribers.DisposableSubscriber;
 
-/**
- * @author .: Ukeje Emeka
- * @email ..: ukejee3@gmail.com
- * @created : 10/18/19
- */
 
 public class TravelDealRepository {
 
-    private Context context;
-    private TravelDealDatabase travelDealDatabase;
-    public static final String DATABASE_NAME = "travel_deal_db";
-    private CompositeDisposable disposable = new CompositeDisposable();
 
-    public TravelDealRepository(Context context){
-        this.context = context;
+    private FavouriteTravelDealDao travelDealDao;
+
+    public TravelDealRepository(Application application) {
+        TravelDealDatabase travelDealDatabase = TravelDealDatabase.getDatabase(application);
+        travelDealDao = travelDealDatabase.favouriteTravelDealDao();
     }
 
-    public TravelDealDatabase getTravelDealDatabase(){
-         return travelDealDatabase = Room.databaseBuilder(context, TravelDealDatabase.class, DATABASE_NAME).build();
+    public LiveData<List<Explore>> getAllFav() {
+        return travelDealDao.fetchAllFavourites();
     }
 
-    public void addFavourite(FavouriteTravelDeal travelDeal, DisposableCompletableObserver observer){
-
-        disposable.add(getTravelDealDatabase().favouriteTravelDealDao().insertFavouriteTravelDeals(travelDeal)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(observer));
+    public void insert(Explore travelDeal) {
+        new InsertAsyncTask(travelDealDao).execute(travelDeal);
     }
 
-    public void removeFavourite(FavouriteTravelDeal travelDeal, DisposableCompletableObserver observer){
+    private static class InsertAsyncTask extends AsyncTask<Explore, Void, Void> {
 
-        disposable.add(getTravelDealDatabase().favouriteTravelDealDao().deleteFavouriteTravelDeal(travelDeal)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(observer));
+        private FavouriteTravelDealDao mAsyncTravelDao;
+
+        private InsertAsyncTask(FavouriteTravelDealDao travelDealDao) {
+            mAsyncTravelDao = travelDealDao;
+        }
+
+        @Override
+        protected Void doInBackground(Explore... favouriteTravelDeals) {
+            mAsyncTravelDao.insertFavouriteTravelDeals(favouriteTravelDeals[0]);
+            return null;
+        }
+
     }
-
-    public void getFavouriteByName(String name, DisposableSingleObserver<FavouriteTravelDeal> observer){
-
-        disposable.add(getTravelDealDatabase().favouriteTravelDealDao().fetchFavouriteByName(name)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(observer));
-    }
-
-    public void getFavourites(DisposableSubscriber<List<FavouriteTravelDeal>> subscriber){
-
-        disposable.add(getTravelDealDatabase().favouriteTravelDealDao().fetchAllFavourites()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(subscriber));
-    }
-
 
 }

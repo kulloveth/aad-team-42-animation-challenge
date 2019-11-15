@@ -3,13 +3,31 @@ package com.aad_team_42.travelmanticsrebranded.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Explore implements Parcelable {
-    private String destination, about, price, id, imageUrl;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+
+@Entity(tableName = "favourite_travel_deals")
+public class Explore implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id;
+
+
+    private String destination;
+    private String about;
+    private String price;
+    private String imageUrl;
+
+    @Ignore
     public Explore() {
     }
 
-    public Explore(String destination, String about, String price, String id, String imageUrl) {
+    public Explore( String destination, String about, String price, @NonNull int id, String imageUrl) {
         this.destination = destination;
         this.about = about;
         this.price = price;
@@ -17,11 +35,12 @@ public class Explore implements Parcelable {
         this.imageUrl = imageUrl;
     }
 
+    @Ignore
     protected Explore(Parcel in) {
         destination = in.readString();
         about = in.readString();
         price = in.readString();
-        id = in.readString();
+        id = in.readInt();
         imageUrl = in.readString();
     }
 
@@ -35,7 +54,7 @@ public class Explore implements Parcelable {
         dest.writeString(destination);
         dest.writeString(about);
         dest.writeString(price);
-        dest.writeString(id);
+        dest.writeInt(id);
         dest.writeString(imageUrl);
     }
 
@@ -75,11 +94,11 @@ public class Explore implements Parcelable {
         this.price = price;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

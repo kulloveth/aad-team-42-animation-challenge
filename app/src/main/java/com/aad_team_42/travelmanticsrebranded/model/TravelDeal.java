@@ -7,7 +7,9 @@ import java.io.Serializable;
  * @email ..: ukejee3@gmail.com
  * @created : 10/18/19
  */
-public class TravelDeal implements Serializable {
+
+
+public class TravelDeal  {
 
     private int id;
     private String title;

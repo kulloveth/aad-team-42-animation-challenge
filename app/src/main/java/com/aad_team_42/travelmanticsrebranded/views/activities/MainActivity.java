@@ -2,6 +2,7 @@ package com.aad_team_42.travelmanticsrebranded.views.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 
 import com.aad_team_42.travelmanticsrebranded.R;
 import com.aad_team_42.travelmanticsrebranded.ZoomOutPageTransformer;
+import com.aad_team_42.travelmanticsrebranded.adapters.ExploreAdapter;
 import com.aad_team_42.travelmanticsrebranded.adapters.ViewPagerAdapter;
 import com.aad_team_42.travelmanticsrebranded.utils.FirebaseUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,9 +27,12 @@ public class MainActivity extends BaseActivity {
     private FirebaseAuth.AuthStateListener listener;
     Toolbar toolbar;
     TabLayout tabLayout;
+    public static ViewPager pager;
+    ExploreAdapter.ItemSelectedListener listenerO;
     private int[] tabIcons = {
             R.drawable.explore, R.drawable.favorite,R.drawable.event
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +40,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
 
-        ViewPager pager = findViewById(R.id.view_pager);
+      pager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tablayout);
         ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
         pager.setPageTransformer(true, new ZoomOutPageTransformer());
         tabLayout.setupWithViewPager(pager);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setUpTabIcons();
@@ -96,4 +100,7 @@ public class MainActivity extends BaseActivity {
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
+
+
+
 }

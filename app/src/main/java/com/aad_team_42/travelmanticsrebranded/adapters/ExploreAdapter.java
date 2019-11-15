@@ -8,10 +8,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.aad_team_42.travelmanticsrebranded.R;
 import com.aad_team_42.travelmanticsrebranded.model.Explore;
+import com.aad_team_42.travelmanticsrebranded.views.activities.MainActivity;
+import com.aad_team_42.travelmanticsrebranded.views.fragments.ExploreFragment;
+import com.aad_team_42.travelmanticsrebranded.views.fragments.FavoriteFragment;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -20,25 +26,29 @@ import java.util.List;
 public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
     private List<Explore> mExploreList = new ArrayList<>();
     private Context mContext;
+    private ItemSelectedListener mSelectedListener;
 
-    public void setExplore(List<Explore> exploreList, Context context) {
+    public void setExplore(List<Explore> exploreList) {
         mExploreList.addAll(exploreList);
-        mContext = context;
         notifyDataSetChanged();
+    }
+
+    public void setItemSelectedListener(ItemSelectedListener selectedListener) {
+        mSelectedListener = selectedListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rv_explore, parent, false);
+        mContext = parent.getContext();
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_rv_explore, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Explore explore = mExploreList.get(position);
         holder.bind(explore);
-
     }
 
     @Override
@@ -48,21 +58,43 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, detail, price;
-        ImageView image_url;
+        ImageView imageUrl, like;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.destination);
             detail = itemView.findViewById(R.id.tour_detail);
-            image_url = itemView.findViewById(R.id.image_tour);
+            imageUrl = itemView.findViewById(R.id.image_tour);
             price = itemView.findViewById(R.id.price);
+            like = itemView.findViewById(R.id.like);
+
+
         }
 
-        public void bind(Explore explore) {
+        public void bind(final Explore explore) {
             title.setText(explore.getDestination());
             detail.setText(explore.getAbout());
             price.setText(explore.getPrice());
-            Glide.with(mContext).load(explore.getImageUrl()).centerCrop().into(image_url);
+            Glide.with(mContext).load(explore.getImageUrl()).centerCrop().into(imageUrl);
+            like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (MainActivity.pager.getCurrentItem() == 0) {
+                        like.setImageResource(R.drawable.favorite_red);
+                        mSelectedListener.selectedItem(explore);
+                    }
+
+
+                }
+            });
         }
+
+
     }
+
+    public interface ItemSelectedListener {
+        void selectedItem(Explore explore);
+    }
+
 }

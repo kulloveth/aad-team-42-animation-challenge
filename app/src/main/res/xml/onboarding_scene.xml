@@ -5,11 +5,7 @@
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
         app:interpolator="easeInOut">
-
-
-
         <KeyFrameSet>
-
             <KeyAttribute
                 app:framePosition="20"
                 app:target="@id/background"
@@ -18,7 +14,6 @@
                     app:attributeName="backgroundColor"
                     app:customColorValue="@color/white" />
             </KeyAttribute>
-
             <KeyAttribute
                 app:framePosition="40"
                 app:target="@id/background"

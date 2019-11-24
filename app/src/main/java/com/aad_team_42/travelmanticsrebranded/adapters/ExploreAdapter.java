@@ -1,6 +1,7 @@
 package com.aad_team_42.travelmanticsrebranded.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.aad_team_42.travelmanticsrebranded.R;
 import com.aad_team_42.travelmanticsrebranded.model.Explore;
+import com.aad_team_42.travelmanticsrebranded.views.activities.DetailActivity;
 import com.aad_team_42.travelmanticsrebranded.views.activities.MainActivity;
 import com.aad_team_42.travelmanticsrebranded.views.fragments.ExploreFragment;
 import com.aad_team_42.travelmanticsrebranded.views.fragments.FavoriteFragment;
@@ -47,8 +49,20 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        Explore explore = mExploreList.get(position);
+        final Explore explore = mExploreList.get(position);
         holder.bind(explore);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext.getApplicationContext(), DetailActivity.class);
+                intent.putExtra("destination", explore.getDestination());
+                intent.putExtra("image", explore.getImageUrl());
+                intent.putExtra("price",explore.getPrice());
+                intent.putExtra("about", explore.getAbout());
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

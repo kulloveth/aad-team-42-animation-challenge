@@ -30,10 +30,14 @@
         <activity
             android:name=".views.activities.OnboardingActivity"
             android:theme="@style/MainTheme" />
+        <activity android:name=".views.activities.PaymentActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="co.paystack.android.PublicKey"
+            android:value="paystack public key"/>
     </application>
 
 </manifest>

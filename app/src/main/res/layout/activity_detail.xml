@@ -53,6 +53,19 @@
         app:layout_constraintStart_toEndOf="@id/image_tour"
         app:layout_constraintTop_toTopOf="@id/image_tour" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/dimens_8dp"
+        android:text="Make reservation"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tour_detail" />
+
     <!--    <ImageView-->
     <!--        android:id="@+id/like"-->
     <!--        android:layout_width="wrap_content"-->

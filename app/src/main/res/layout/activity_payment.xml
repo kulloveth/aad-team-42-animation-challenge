@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".views.activities.PaymentActivity">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="200dp" />
+
+    <ImageView
+        android:id="@+id/paystack"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/paystack"
+        app:layout_constraintBottom_toTopOf="@id/card_no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideline" />
+
+    <EditText
+        android:id="@+id/card_no"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/tv_drawables"
+        android:gravity="center"
+        android:hint="card  no"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paystack" />
+
+    <EditText
+        android:id="@+id/expiry_month"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_50dp"
+        android:layout_marginTop="@dimen/dimens_8dp"
+        android:background="@drawable/tv_drawables"
+        android:hint="expiry month"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/card_no"
+        app:layout_constraintTop_toBottomOf="@id/card_no" />
+
+    <EditText
+        android:id="@+id/expiry_year"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_50dp"
+        android:layout_marginTop="@dimen/dimens_8dp"
+        android:background="@drawable/tv_drawables"
+        android:hint="expiry Year"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@id/cvv_no"
+        app:layout_constraintStart_toEndOf="@+id/expiry_month"
+        app:layout_constraintTop_toBottomOf="@id/card_no" />
+
+    <EditText
+        android:id="@+id/cvv_no"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimens_50dp"
+        android:layout_marginTop="@dimen/dimens_8dp"
+        android:background="@drawable/tv_drawables"
+        android:hint="CVV"
+        android:inputType="number"
+        android:paddingStart="8dp"
+        android:paddingLeft="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/expiry_year"
+        app:layout_constraintTop_toBottomOf="@id/card_no" />
+
+    <Button
+        android:id="@+id/validate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="validate"
+        app:backgroundTint="#09a0d5"
+        app:layout_constraintEnd_toStartOf="@id/cvv_no"
+        app:layout_constraintStart_toEndOf="@id/expiry_month"
+        app:layout_constraintTop_toBottomOf="@id/expiry_year" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

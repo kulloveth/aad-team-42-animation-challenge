@@ -11,4 +11,8 @@
         app:showAsAction="never">
 
     </item>
+    <item android:id="@+id/add"
+        android:title="Add location"
+        app:showAsAction="never">
+    </item>
 </menu>

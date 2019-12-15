@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -87,6 +88,9 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
+                break;
+            case R.id.add:
+                startActivity(new Intent(this,AddEditPlaceActivity.class));
                 break;
             case R.id.logout:
                 FirebaseUtils.signOutUser(this);

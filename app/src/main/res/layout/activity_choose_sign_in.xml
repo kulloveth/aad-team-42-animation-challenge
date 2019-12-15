@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dimens_100dp"
         android:src="@drawable/travis_logo"
-        app:srcCompat="@mipmap/travis_logo"
+        app:srcCompat="@drawable/travis_logo"
         tools:ignore="ContentDescription" />
 
     <TextView

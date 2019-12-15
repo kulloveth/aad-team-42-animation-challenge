@@ -1,5 +1,4 @@
 <resources>
-<<<<<<< HEAD
     <string name="app_logo">app_logo</string>
     <string name="Email_view">Email:</string>
     <string name="Email_box">Enter your Email</string>
@@ -18,9 +17,7 @@
     <string name="tour_title">Dubai Airport</string>
     <string name="tour_detail">Dubai is a very fun place to be with</string>
     <string name="price">fees $3000</string>
-
     <string name="app_tit">Places and Events</string>
-
     <string name="started">Getting Started</string>
     <string name="title"><![CDATA[P & E]]></string>
     <string name="sub_title">Places and Events</string>
@@ -38,8 +35,5 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="name">Name:</string>
     <string name="network_error">fetching data.. make sure you are connected to internet</string>
-
-=======
     <string name="app_name">TravelMantics</string>
->>>>>>> Revert "Signin page"
 </resources>

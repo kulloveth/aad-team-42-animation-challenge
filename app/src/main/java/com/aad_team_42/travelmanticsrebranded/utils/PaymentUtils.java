@@ -3,12 +3,7 @@ package com.aad_team_42.travelmanticsrebranded.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
-
-import com.aad_team_42.travelmanticsrebranded.views.activities.DetailActivity;
-import com.aad_team_42.travelmanticsrebranded.views.activities.PaymentActivity;
-
 import java.util.Calendar;
-
 import co.paystack.android.Paystack;
 import co.paystack.android.PaystackSdk;
 import co.paystack.android.Transaction;

@@ -52,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/location_eT"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="location"
@@ -75,6 +76,7 @@
             app:layout_constraintTop_toBottomOf="@id/location_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/flavour_eT"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="flavour"
@@ -91,13 +93,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimens_16dp"
             android:layout_marginTop="@dimen/dimens_32dp"
-            android:layout_marginEnd="@dimen/dimens_16dp"
+            android:layout_marginEnd="@dimen/dimens_8dp"
             android:paddingBottom="@dimen/dimens_8dp"
             app:boxStrokeColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="@id/flavour_input_layout"
             app:layout_constraintTop_toBottomOf="@id/flavour_input_layout">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/full_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="full detail"
@@ -107,27 +110,54 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/price_input_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/dimens_100dp"
+            android:layout_height="@dimen/dimens_50dp"
+            android:layout_marginTop="@dimen/dimens_32dp"
+            android:layout_marginEnd="@dimen/dimens_8dp"
+            android:paddingBottom="@dimen/dimens_8dp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="@id/flavour_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/detail_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="price"
+                android:maxLines="1"
+                android:padding="@dimen/dimens_8dp"
+                android:textColorHint="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <ImageView
             android:id="@+id/choose_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimens_200dp"
+            android:layout_height="@dimen/dimens_200dp"
             android:layout_marginTop="@dimen/dimens_8dp"
             android:src="@drawable/choose_image_foreground"
+            app:layout_constraintEnd_toEndOf="@id/detail_input_layout"
             app:layout_constraintStart_toStartOf="@id/detail_input_layout"
-            app:layout_constraintTop_toBottomOf="@id/detail_input_layout" />
+            app:layout_constraintTop_toBottomOf="@id/price_input_layout" />
 
         <TextView
             android:id="@+id/image_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="3"
             android:text="image"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/choose_image"
             app:layout_constraintStart_toEndOf="@+id/choose_image"
             app:layout_constraintTop_toTopOf="@id/choose_image" />
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/post"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,9 +166,9 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
             app:backgroundTint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@id/choose_image"
-            app:layout_constraintTop_toTopOf="@id/choose_image"
-            app:layout_constraintStart_toEndOf="@id/image_url" />
+            app:layout_constraintEnd_toEndOf="@id/detail_input_layout"
+            app:layout_constraintStart_toStartOf="@id/detail_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/choose_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

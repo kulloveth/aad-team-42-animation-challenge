@@ -27,11 +27,20 @@ public class Explore implements Parcelable {
     public Explore() {
     }
 
-    public Explore( String destination, String about, String price, @NonNull int id, String imageUrl) {
+    public Explore(String destination, String about, String price, @NonNull int id, String imageUrl) {
         this.destination = destination;
         this.about = about;
         this.price = price;
         this.id = id;
+        this.imageUrl = imageUrl;
+    }
+
+    @Ignore
+    public Explore(String destination, String about, String price, String imageUrl) {
+        this.destination = destination;
+        this.about = about;
+        this.price = price;
+        // this.id = id;
         this.imageUrl = imageUrl;
     }
 
